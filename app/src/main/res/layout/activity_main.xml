@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/main_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/activity_title" />
+
+            <RelativeLayout
+                android:id="@+id/main_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></RelativeLayout>
+
+            <Button
+                android:id="@+id/main_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="充值支付一元"
+                android:visibility="gone" />
+            <!--    <ListView
+                    android:id="@+id/mian_list"
+                    android:divider="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>-->
+            <me.leefeng.lfrecyclerview.LFRecyclerView
+                android:id="@+id/mian_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff"
+                android:overScrollMode="never"></me.leefeng.lfrecyclerview.LFRecyclerView>
+        </LinearLayout>
+
+        <FrameLayout
+            android:clickable="true"
+            android:id="@+id/main_menu_container"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#fff"></FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
+</FrameLayout>

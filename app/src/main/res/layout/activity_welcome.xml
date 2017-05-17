@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffff">
+
+    <TextView
+        android:id="@+id/welcome_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="#d3d3d3"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/welcome_splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+
+        android:src="@drawable/splash1"
+        android:visibility="invisible" />
+
+    <FrameLayout
+        android:id="@+id/splash_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/welcome_bottom_im"
+      ></FrameLayout>
+
+    <TextView
+        android:id="@+id/skip_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:padding="20dp" />
+
+    <ImageView
+        android:id="@+id/welcome_bottom_im"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:src="@drawable/welcome_bottom" />
+
+
+</RelativeLayout>
