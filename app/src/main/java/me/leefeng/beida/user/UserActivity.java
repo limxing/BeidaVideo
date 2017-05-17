@@ -1,21 +1,23 @@
 package me.leefeng.beida.user;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.R;
 import me.leefeng.library.view.ItemView;
-import me.leefeng.library.view.RoundImageView;
 
 /**
  * @author FengTing
@@ -36,6 +38,10 @@ public class UserActivity extends BaseActivity implements UserView {
     ItemView userItemPhone;
     @BindView(R.id.user_item_isbeida)
     ItemView userItemIsbeida;
+    @BindView(R.id.user_overscoll)
+    LinearLayout userOverscoll;
+    @BindView(R.id.title_bac)
+    LinearLayout titleBac;
     private UserPresenter presenter;
 
     @Override
@@ -52,9 +58,11 @@ public class UserActivity extends BaseActivity implements UserView {
 
     @Override
     protected void initView() {
+        titleBac.setBackgroundColor(Color.TRANSPARENT);
+        titleName.setVisibility(View.GONE);
         titleName.setText("个人信息");
         initUsername();
-
+        OverScrollDecoratorHelper.setUpStaticOverScroll(userOverscoll, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
 
     @Override
@@ -82,13 +90,15 @@ public class UserActivity extends BaseActivity implements UserView {
             }
             boolean isBeida = ProjectApplication.user.isBeida();
             if (isBeida) {
-                userItemIsbeida.setResult("认证学员");
+                userItemIsbeida.getValueTextView().setText("认证学员");
             }
-            userItemPhone.setResult(ProjectApplication.user.getPhone());
+            userItemPhone.getValueTextView().setText(ProjectApplication.user.getPhone());
 
         }
-        if (username != null)
+        if (username != null) {
             userName.setText(username);
+            userItemPhone.getValueTextView().setText(username);
+        }
     }
 
 
@@ -105,4 +115,7 @@ public class UserActivity extends BaseActivity implements UserView {
                 break;
         }
     }
+
+
+
 }

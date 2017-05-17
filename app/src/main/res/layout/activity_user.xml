@@ -5,16 +5,15 @@
     android:background="#eee"
     android:layout_height="match_parent">
 
+
     <LinearLayout
+        android:id="@+id/user_overscoll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <include layout="@layout/activity_title" />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="200dp"
             android:background="@drawable/bac_user">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -69,5 +68,5 @@
             app:titleStyle="2"
             app:titleText="学员认证"></me.leefeng.library.view.ItemView>
     </LinearLayout>
-
+    <include layout="@layout/activity_title" />
 </RelativeLayout>
