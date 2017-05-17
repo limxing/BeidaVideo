@@ -31,6 +31,7 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.leefeng.beida.Constants;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.R;
+import me.leefeng.beida.login.LoginActivity;
 import me.leefeng.beida.user.UserActivity;
 import me.leefeng.library.utils.LogUtils;
 import me.leefeng.library.utils.SharedPreferencesUtil;
@@ -107,18 +108,7 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
 //         banner = new BannerView(getActivity(), ADSize.BANNER, Constants.APPID, Constants.BannerPosID);
 //        banner.setRefresh(30);
 //        menuAd.addView(banner);
-        String username = null;
-        if (ProjectApplication.user != null) {
-            username = ProjectApplication.user.getUsername();
-            if (TextUtils.isEmpty(username)){
-                username="phone_" + ProjectApplication.user.getPhone().substring(8);
-            }
-        } else {
-            String phone = SharedPreferencesUtil.getStringData(getContext(), "phone_", 0 + "");
-            username = SharedPreferencesUtil.getStringData(getContext(), "username", "phone_" + phone.substring(8));
-        }
-
-        menuUsername.setText(username);
+        initUsername();
         return view;
     }
 
@@ -131,7 +121,13 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @OnClick(R.id.menu_user_rl)
     public void onViewClicked() {
-        Intent intent = new Intent(getContext(), UserActivity.class);
+        Intent intent = null;
+        if (ProjectApplication.user == null) {
+            intent = new Intent(getContext(), LoginActivity.class);
+            intent.putExtra("isBack", true);
+        } else {
+            intent = new Intent(getContext(), UserActivity.class);
+        }
         startActivity(intent);
     }
 
@@ -168,5 +164,26 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
             Intent intent = new Intent(getContext(), click);
             startActivity(intent);
         }
+    }
+
+    public void loginSuccess() {
+        initUsername();
+    }
+
+    private void initUsername() {
+        String username = null;
+        if (ProjectApplication.user != null) {
+            username = ProjectApplication.user.getUsername();
+            if (TextUtils.isEmpty(username)) {
+                username = "phone_" + ProjectApplication.user.getPhone().substring(7);
+            }
+            boolean isBeida = ProjectApplication.user.isBeida();
+            if (isBeida) {
+                menuCb.setText("认证学员");
+            }
+            menuCb.setChecked(isBeida);
+        }
+        if (username != null)
+            menuUsername.setText(username);
     }
 }

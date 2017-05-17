@@ -63,6 +63,7 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
     private final String course = "course.json";
     private boolean isFirst;
     private BannerView banner;
+    private MenuFragment menuFragment;
 
     @Override
     protected void initData() {
@@ -112,7 +113,7 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
         titleBack.setImageResource(R.drawable.ic_main_user);
         titleBack.setOnClickListener(this);
 
-        MenuFragment menuFragment = new MenuFragment();
+        menuFragment = new MenuFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.main_menu_container, menuFragment).commit();
     }
 
@@ -171,6 +172,7 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
 //        svp.dismiss();
         promptDialog.dismiss();
 //        initUser();
+        menuFragment.loginSuccess();
     }
 
     @Override
@@ -221,8 +223,14 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
     }
 
     @Override
-    public void stopFresh(boolean b) {
-        mianList.stopRefresh(b);
+    public void stopFresh(final boolean b) {
+        titleBack.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mianList.stopRefresh(b);
+            }
+        }, 500);
+
         promptDialog.dismissImmediately();
         if (b) banner.loadAD();
     }

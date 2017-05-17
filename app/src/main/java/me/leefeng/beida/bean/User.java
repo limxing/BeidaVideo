@@ -11,6 +11,15 @@ public class User extends BmobObject {
     String password;
     String phone;
     Long account;
+    boolean isBeida;
+
+    public boolean isBeida() {
+        return isBeida;
+    }
+
+    public void setBeida(boolean beida) {
+        isBeida = beida;
+    }
 
     public String getUsername() {
         return username;

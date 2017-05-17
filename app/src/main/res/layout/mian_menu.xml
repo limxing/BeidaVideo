@@ -27,7 +27,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/menu_head"
-            android:text="名称"
+            android:text="未登录"
             android:textColor="#000"
             android:textSize="18sp" />
 
