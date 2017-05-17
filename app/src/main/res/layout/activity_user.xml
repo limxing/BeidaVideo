@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="#eee"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -11,22 +12,61 @@
 
         <include layout="@layout/activity_title" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@drawable/bac_user">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_head"
+                android:layout_width="64dp"
+
+                android:layout_height="64dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_user"
+                app:civ_border_color="@color/colorAccent"
+                app:civ_border_width="1dp" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_head"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="姓名"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
         <me.leefeng.library.view.ItemView
+            android:id="@+id/user_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:bottomLineBrim="false"
+            app:hintText="phone_0000"
             app:showRightPic="true"
+            app:titleStyle="2"
             app:titleText="姓名"></me.leefeng.library.view.ItemView>
 
         <me.leefeng.library.view.ItemView
+            android:id="@+id/user_item_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:bottomLineBrim="false"
+            app:hintText="18514528236"
             app:showRightPic="true"
+            app:titleStyle="2"
             app:titleText="手机号"></me.leefeng.library.view.ItemView>
 
         <me.leefeng.library.view.ItemView
+            android:id="@+id/user_item_isbeida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:hintText="未认证"
             app:showRightPic="true"
+            app:titleStyle="2"
             app:titleText="学员认证"></me.leefeng.library.view.ItemView>
     </LinearLayout>
 

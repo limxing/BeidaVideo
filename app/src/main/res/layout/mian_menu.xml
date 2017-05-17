@@ -16,7 +16,7 @@
             android:id="@+id/menu_head"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/ic_user"
             app:civ_border_color="#fff"
             app:civ_border_width="1dp" />
 
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_toRightOf="@+id/menu_head"
             android:text="未登录"
             android:textColor="#000"
@@ -54,7 +54,7 @@
     <View
         android:id="@+id/menu_view"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="1px"
         android:layout_below="@+id/menu_user_rl"
         android:layout_marginTop="20dp"
         android:background="#ccc"
