@@ -3,6 +3,7 @@ package me.leefeng.beida.login;
 import com.alibaba.fastjson.JSON;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
+import me.leefeng.beida.Constants;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.bean.User;
 
@@ -15,6 +16,7 @@ import cn.bmob.v3.listener.SaveListener;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 import me.leefeng.library.utils.LogUtils;
+import me.leefeng.library.utils.SharedPreferencesUtil;
 
 /**
  * @author FengTing
@@ -92,7 +94,13 @@ public class LoginPresenter implements LoginPreInterface {
                             public void done(String s, BmobException e) {
                                 if (e == null) {
                                     ProjectApplication.user = user;
-                                    MiPushClient.setAlias(ProjectApplication.getContext(), user.getObjectId(), null);
+                                    List<String> alias = MiPushClient.getAllAlias(ProjectApplication.getContext());
+                                    if (!alias.contains(list.get(0).getObjectId()))
+                                        MiPushClient.setAlias(ProjectApplication.getContext(), list.get(0).getObjectId(), null);//登陆时设置就行
+
+                                    if (SharedPreferencesUtil.getBooleanData(ProjectApplication.getContext(), "dayi", true) && !alias.contains(Constants.MiNoticeDayi))
+                                        MiPushClient.setAlias(ProjectApplication.getContext(), Constants.MiNoticeDayi, null);
+
                                     loginView.loginSuccess();
                                 } else {
                                     e.printStackTrace();

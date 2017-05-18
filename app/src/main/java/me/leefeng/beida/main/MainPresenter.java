@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.litesuits.orm.LiteOrm;
 import com.xiaomi.mipush.sdk.MiPushClient;
 
+import me.leefeng.beida.Constants;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.bean.BuyData;
 import me.leefeng.beida.bean.Course;
@@ -42,6 +43,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import me.leefeng.library.utils.IOUtils;
 import me.leefeng.library.utils.LogUtils;
+import me.leefeng.library.utils.SharedPreferencesUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -90,7 +92,13 @@ public class MainPresenter implements MainPreInterface {
             public void done(List<User> list, BmobException e) {
                 if (e == null && list != null && list.size() > 0) {
                     ProjectApplication.user = list.get(0);
-//                    MiPushClient.setAlias(ProjectApplication.getContext(), list.get(0).getObjectId(), null);//登陆时设置就行
+                    List<String> alias = MiPushClient.getAllAlias(ProjectApplication.getContext());
+                    if (!alias.contains(list.get(0).getObjectId()))
+                        MiPushClient.setAlias(ProjectApplication.getContext(), list.get(0).getObjectId(), null);//登陆时设置就行
+
+                    if (SharedPreferencesUtil.getBooleanData(ProjectApplication.getContext(), "dayi", true) && !alias.contains(Constants.MiNoticeDayi))
+                        MiPushClient.setAlias(ProjectApplication.getContext(), Constants.MiNoticeDayi, null);
+
                     mainView.loginSuccess();
                 } else {
                     e.printStackTrace();

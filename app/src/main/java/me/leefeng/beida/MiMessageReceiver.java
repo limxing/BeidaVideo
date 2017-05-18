@@ -16,6 +16,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import me.leefeng.beida.dbmodel.NoticeMessage;
+
 /**
  * 1、PushMessageReceiver 是个抽象类，该类继承了 BroadcastReceiver。<br/>
  * 2、需要将自定义的 DemoMessageReceiver 注册在 AndroidManifest.xml 文件中：
@@ -95,8 +97,19 @@ public class MiMessageReceiver extends PushMessageReceiver {
 
     @Override
     public void onNotificationMessageArrived(Context context, MiPushMessage message) {
+
+        NoticeMessage noticeMessage = new NoticeMessage();
+        noticeMessage.setMessageId(message.getMessageId());
+        noticeMessage.setAlias(message.getAlias());
+        noticeMessage.setContent(message.getContent());
+        noticeMessage.setTitle(message.getTitle());
+        noticeMessage.setDescription(message.getDescription());
+        noticeMessage.setType(message.getExtra().get("type"));
+        noticeMessage.setTime(System.currentTimeMillis());
+        ProjectApplication.liteOrm.save(noticeMessage);
+
         Log.v(ProjectApplication.TAG,
-                "onNotificationMessageArrived is called. " + message.toString());
+                "onNotificationMessageArrived is called. " + noticeMessage.toString());
         String log = context.getString(R.string.arrive_notification_message, message.getContent());
 //        MainActivity.logList.add(0, getSimpleDate() + " " + log);
 

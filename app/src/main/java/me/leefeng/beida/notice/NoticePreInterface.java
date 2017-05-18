@@ -6,4 +6,6 @@ package me.leefeng.beida.notice;
  */
 public interface NoticePreInterface {
      void destory();
+
+    void initData();
 }
