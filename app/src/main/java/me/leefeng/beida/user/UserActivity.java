@@ -29,6 +29,7 @@ import me.leefeng.promptlibrary.PromptButtonListener;
  * @date 2017/05/17 14:58:49
  */
 public class UserActivity extends BaseActivity implements UserView {
+    private static final int REQUEST_CHANGENAME = 0;
     @BindView(R.id.title_back)
     ImageView titleBack;
     @BindView(R.id.title_name)
@@ -111,15 +112,18 @@ public class UserActivity extends BaseActivity implements UserView {
 
     @OnClick({R.id.user_head, R.id.user_item_name, R.id.user_item_phone, R.id.user_item_isbeida, R.id.user_logout})
     public void onViewClicked(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.user_head:
                 break;
             case R.id.user_item_name:
+                intent = new Intent(mContext, ChangeNameActivity.class);
+                startActivityForResult(intent, REQUEST_CHANGENAME);
                 break;
             case R.id.user_item_phone:
                 break;
             case R.id.user_item_isbeida:
-                Intent intent = new Intent(this, User_renzhengActivity.class);
+                intent = new Intent(this, User_renzhengActivity.class);
                 startActivity(intent);
                 break;
             case R.id.user_logout:
@@ -146,5 +150,16 @@ public class UserActivity extends BaseActivity implements UserView {
         confirm.setDelyClick(true);
         promptDialog.showWarnAlert("确定要退出吗？", new PromptButton("取消", null), confirm);
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CHANGENAME:
+                    promptDialog.showSuccess("修改成功");
+                    break;
+            }
+        }
     }
 }

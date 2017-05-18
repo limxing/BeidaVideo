@@ -17,6 +17,20 @@ public class User extends BmobObject {
 
     String bdAccount;
     String bdPassword;
+    public User(){
+
+    }
+
+    public User(User user) {
+        this.username=user.getUsername();
+        this.password=user.getPassword();
+        this.phone=user.getPhone();
+        this.account=user.getAccount();
+        this.isBeida=user.isBeida();
+        this.realName=user.getRealName();
+        this.bdAccount=user.getBdAccount();
+        this.bdPassword=user.getBdPassword();
+    }
 
     public String getBdAccount() {
         return bdAccount;

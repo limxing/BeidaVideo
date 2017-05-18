@@ -27,7 +27,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="8dp"
             android:layout_toRightOf="@+id/menu_head"
-            android:text="未登录"
+            android:singleLine="true"
             android:textColor="#000"
             android:textSize="18sp" />
 
@@ -41,12 +41,10 @@
             android:layout_toRightOf="@+id/menu_head"
             android:background="@null"
             android:button="@null"
-            android:checked="true"
             android:clickable="false"
             android:drawableLeft="@drawable/menu_cb_selector"
             android:drawablePadding="5dp"
             android:focusable="false"
-            android:text="未认证学员"
             android:textColor="#999"
             android:textSize="12sp" />
     </RelativeLayout>

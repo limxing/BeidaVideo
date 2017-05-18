@@ -63,7 +63,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
         presenter = new LoginPresenter(this);
         timer = new TimeCount(60000, 1000);
         if (isBack) {
-            findViewById(R.id.login_title).setVisibility(View.VISIBLE);
+
+//            findViewById(R.id.login_title).setVisibility(View.VISIBLE);
             titleName.setVisibility(View.INVISIBLE);
 //            findViewById(R.id.title_bac).setBackgroundColor(Color.TRANSPARENT);
             titleBack.setVisibility(View.VISIBLE);
