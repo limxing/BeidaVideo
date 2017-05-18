@@ -22,6 +22,7 @@ import me.leefeng.beida.download.DownLoadService;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
+import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -106,7 +107,11 @@ public class ProjectApplication extends Application {
         Logger.setLogger(this, newLogger);
     }
 
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
     //
 //    @Override
 //    protected void attachBaseContext(Context base) {
