@@ -2,6 +2,7 @@ package me.leefeng.beida.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.smssdk.SMSSDK;
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.Constants;
@@ -43,11 +45,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.login_pw)
     MaterialEditText loginPw;
     @BindView(R.id.login_phone)
-    Button loginPhone;
+    TextView loginPhone;
     @BindView(R.id.title_back)
     ImageView titleBack;
-    @BindView(R.id.linearLayout2)
-    LinearLayout linearLayout2;
+
     @BindView(R.id.welcome_adbanner)
     RelativeLayout welcomeAdbanner;
     private LoginPresenter presenter;
@@ -62,6 +63,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
         presenter = new LoginPresenter(this);
         timer = new TimeCount(60000, 1000);
         if (isBack) {
+            findViewById(R.id.login_title).setVisibility(View.VISIBLE);
+            titleName.setVisibility(View.INVISIBLE);
+//            findViewById(R.id.title_bac).setBackgroundColor(Color.TRANSPARENT);
             titleBack.setVisibility(View.VISIBLE);
             titleBack.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -155,9 +159,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     /**
      * 获取验证码按钮
      *
-     * @param view
      */
-    public void getPhoneConfirmNum(View view) {
+    @OnClick(R.id.login_phone)
+    public void getPhoneConfirmNum() {
         num = loginId.getText().toString().trim();
         String telRegex = "[1][34578]\\d{9}";
         if (num.length() == 11 && num.matches(telRegex)) {
@@ -192,7 +196,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
                 getPhoneConfirmNumSuccess = false;
 //                svp.showInfoWithStatus(message);
                 promptDialog.showInfo(message);
-                loginPhone.setEnabled(true);
+                loginPhone.setClickable(true);
                 loginPhone.setText("获取验证码");
                 timer.cancel();
 //                task.cancel();
@@ -209,7 +213,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
             public void run() {
 //                svp.showInfoWithStatus("登录失败，请稍候重试");
                 promptDialog.showInfo("登录失败，请稍候重试");
-                loginPhone.setEnabled(true);
+                loginPhone.setClickable(true);
                 loginPhone.setText("获取验证码");
 //                取消动画
                 timer.cancel();
@@ -247,14 +251,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            loginPhone.setEnabled(false);
+            loginPhone.setClickable(false);
             loginPhone.setText(millisUntilFinished / 1000 + "(s)");
         }
 
         @Override
         public void onFinish() {
             loginPhone.setText("获取验证码");
-            loginPhone.setEnabled(true);
+            loginPhone.setClickable(true);
 
         }
     }

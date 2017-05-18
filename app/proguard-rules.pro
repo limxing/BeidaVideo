@@ -32,6 +32,15 @@
 #可以防止一个误报的 warning 导致无法成功编译，如果编译使用的 Android 版本是 23。
 -dontwarn com.xiaomi.push.**
 -keep class  me.leefeng.beida.MiMessageReceiver{*;}
+#---------------------------------Glide---------------------------------
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+
+# for DexGuard only
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 #---------------------------------广告---------------------------------
 ######--butterknife--#######
 -keep class butterknife.** { *; }

@@ -9,4 +9,6 @@
     <color name="bac">#961319</color>
     <color name="bac_pressed">#7a090e</color>
     <color name="list_select">#f5f5f5</color>
+
+    <color name="activity_baccolor">#efefef</color>
 </resources>

@@ -15,6 +15,7 @@ import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.BannerView;
 import com.superplayer.library.SuperPlayer;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
+
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.Constants;
 import me.leefeng.beida.ProjectApplication;
@@ -110,8 +111,8 @@ public class NewPlayerActivity extends BaseActivity implements View.OnClickListe
         newplayer_recycleview = (RecyclerView) findViewById(R.id.newplayer_recycleview);
         player.measure(0, 0);
 
-        newplayer_list=findViewById(R.id.newplay_list);
-        newplayer_adbanner=(RelativeLayout)findViewById(R.id.newplay_adbanner);
+        newplayer_list = findViewById(R.id.newplay_list);
+        newplayer_adbanner = (RelativeLayout) findViewById(R.id.newplay_adbanner);
 
         recycleParams = (RelativeLayout.LayoutParams) newplayer_list.getLayoutParams();
         recycleParams.setMargins(0, player.getMeasuredHeight(), 0, 0);
@@ -512,7 +513,7 @@ public class NewPlayerActivity extends BaseActivity implements View.OnClickListe
         if (StringUtils.isEmpty(endString)) {
             endString = "-300K.mp4";
         }
-        if (course.getVideos().get(i).getFirstiszero() == 1) {
+        if (course.getVideos().get(i).getFirstiszero() == 1 && name.substring(0, name.indexOf(" ")).equals("1.0")) {
             u = "C00S00P00";
         }
         u = course.getVideos().get(i).getUrl() + u + endString;

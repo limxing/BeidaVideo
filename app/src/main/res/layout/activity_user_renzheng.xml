@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/activity_title" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="vertical">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/renzheng_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="报名号或学号"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="normal"
+
+                    app:met_primaryColor="@color/bac" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/renzheng_pas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="密码"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="normal"
+                    app:met_primaryColor="@color/bac" />
+
+                <TextView
+                    android:id="@+id/renzheng_send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/login_button"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="开始认证"
+                    android:textColor="#fff"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/renzheng_true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/activity_baccolor"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="30dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/renzheng_headpic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/renzheng_headpic" />
+
+                <TextView
+                    android:id="@+id/renzheng_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="姓名" />
+
+                <TextView
+                    android:id="@+id/renzheng_bmh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="报名号：" />
+
+                <TextView
+                    android:id="@+id/renzheng_xh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="学号：" />
+
+                <TextView
+                    android:id="@+id/renzheng_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="学分" />
+            </LinearLayout>
+
+            <me.leefeng.library.view.FailView
+                android:id="@+id/renzheng_failview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:failCircleColor="@color/colorAccent" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/renzheng_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"></RelativeLayout>
+
+</RelativeLayout>

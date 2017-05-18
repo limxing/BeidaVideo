@@ -59,6 +59,9 @@ public class SecUtil {
         return null;
     }
 
+    public static String getRawKey(){
+        return MD5Encrypt("leefengme",32);
+    }
     /**
      * 使用AES算法加密字符串.
      *

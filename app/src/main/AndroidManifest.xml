@@ -1,168 +1,100 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="me.leefeng.beida">
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="me.leefeng.beida">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
-    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
 
     <!--Bom后端云-->
     <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_LOGS"/>
 
     <!--小米推送-->
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
-    <permission
-        android:name="me.leefeng.beida.permission.MIPUSH_RECEIVE"
-        android:protectionLevel="signature" />
+    <permission android:name="me.leefeng.beida.permission.MIPUSH_RECEIVE" android:protectionLevel="signature"/>
     <!--这里com.xiaomi.mipushdemo改成app的包名-->
-    <uses-permission android:name="me.leefeng.beida.permission.MIPUSH_RECEIVE" />
+    <uses-permission android:name="me.leefeng.beida.permission.MIPUSH_RECEIVE"/>
     <!--这里com.xiaomi.mipushdemo改成app的包名-->
 
 
-    <application
-        android:name=".ProjectApplication"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:replace="android:icon">
+    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name=".ProjectApplication" android:supportsRtl="true" android:theme="@style/AppTheme" tools:replace="android:icon">
         <activity android:name=".main.MainActivity">
 
         </activity>
 
 
-        <activity
-            android:name=".paymore.PaymoreActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".welcome.WelcomeActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden">
+        <activity android:configChanges="orientation|keyboardHidden" android:name=".paymore.PaymoreActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:configChanges="orientation|keyboardHidden" android:name=".welcome.WelcomeActivity" android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".login.LoginActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".newplay.NewPlayerActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/FullScreen" />
+        <activity android:configChanges="orientation|keyboardHidden" android:name=".login.LoginActivity" android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <activity android:configChanges="orientation|screenSize" android:name=".newplay.NewPlayerActivity" android:theme="@style/FullScreen"/>
 
-        <service
-            android:name=".download.DownLoadService"
-            android:priority="1000" />
+        <service android:name=".download.DownLoadService" android:priority="1000"/>
 
-        <activity android:name=".down.DownActivity" />
-        <activity android:name=".down.DownloadingActivity" />
-        <activity
-            android:name=".down.DownCourseActivity"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/FullScreen" />
+        <activity android:name=".down.DownActivity"/>
+        <activity android:name=".down.DownloadingActivity"/>
+        <activity android:configChanges="orientation|screenSize" android:name=".down.DownCourseActivity" android:theme="@style/FullScreen"/>
 
 
         <!-- targetSDKVersion >= 24时才需要添加这个provider。provider的authorities属性的值为${a
         pplicationId}.fileprovider，请开发者根据自己的${applicationId}来设置这个值 -->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="me.leefeng.beida.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/gdt_file_path" />
+        <provider android:authorities="me.leefeng.beida.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/gdt_file_path"/>
         </provider>
 
         <!-- 声明SDK所需要的组件 -->
-        <service
-            android:name="com.qq.e.comm.DownloadService"
-            android:exported="false" />
+        <service android:exported="false" android:name="com.qq.e.comm.DownloadService"/>
         <!-- 请开发者注意字母的大小写，ADActivity，而不是AdActivity -->
-        <activity
-            android:name="com.qq.e.ads.ADActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:name="com.qq.e.ads.ADActivity"/>
 
         <!--小米推送-->
-        <service
-            android:name="com.xiaomi.push.service.XMPushService"
-            android:enabled="true"
-            android:process=":pushservice" />
-        <service
-            android:name="com.xiaomi.push.service.XMJobService"
-            android:enabled="true"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:process=":pushservice" />
+        <service android:enabled="true" android:name="com.xiaomi.push.service.XMPushService" android:process=":pushservice"/>
+        <service android:enabled="true" android:exported="false" android:name="com.xiaomi.push.service.XMJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":pushservice"/>
         <!--注：此service必须在3.0.1版本以后（包括3.0.1版本）加入-->
-        <service
-            android:name="com.xiaomi.mipush.sdk.PushMessageHandler"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name="com.xiaomi.mipush.sdk.MessageHandleService"
-            android:enabled="true" />
+        <service android:enabled="true" android:exported="true" android:name="com.xiaomi.mipush.sdk.PushMessageHandler"/>
+        <service android:enabled="true" android:name="com.xiaomi.mipush.sdk.MessageHandleService"/>
         <!--注：此service必须在2.2.5版本以后（包括2.2.5版本）加入-->
-        <receiver
-            android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver"
-            android:exported="true">
+        <receiver android:exported="true" android:name="com.xiaomi.push.service.receivers.NetworkStatusReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
-        <receiver
-            android:name="com.xiaomi.push.service.receivers.PingReceiver"
-            android:exported="false"
-            android:process=":pushservice">
+        <receiver android:exported="false" android:name="com.xiaomi.push.service.receivers.PingReceiver" android:process=":pushservice">
             <intent-filter>
-                <action android:name="com.xiaomi.push.PING_TIMER" />
+                <action android:name="com.xiaomi.push.PING_TIMER"/>
             </intent-filter>
         </receiver>
         <!--小米推送的接受者-->
-        <receiver
-            android:name=".MiMessageReceiver"
-            android:exported="true">
+        <receiver android:exported="true" android:name=".MiMessageReceiver">
             <!--这里com.xiaomi.mipushdemo.DemoMessageRreceiver改成app中定义的完整类名-->
             <intent-filter>
-                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE" />
+                <action android:name="com.xiaomi.mipush.RECEIVE_MESSAGE"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED" />
+                <action android:name="com.xiaomi.mipush.MESSAGE_ARRIVED"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="com.xiaomi.mipush.ERROR" />
+                <action android:name="com.xiaomi.mipush.ERROR"/>
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".set.SetActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".user.UserActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".notice.NoticeActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-    </application>
+        <activity android:configChanges="orientation|keyboardHidden" android:name=".set.SetActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:configChanges="orientation|keyboardHidden" android:name=".user.UserActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:configChanges="orientation|keyboardHidden" android:name=".notice.NoticeActivity" android:windowSoftInputMode="adjustPan|stateHidden"/>
+    <activity android:configChanges="orientation|keyboardHidden" android:name=".user_renzheng.User_renzhengActivity" android:windowSoftInputMode="adjustPan|stateHidden"/></application>
 
 </manifest>

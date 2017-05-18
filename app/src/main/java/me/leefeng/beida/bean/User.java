@@ -12,6 +12,27 @@ public class User extends BmobObject {
     String phone;
     Long account;
     boolean isBeida;
+    String realName;
+    String headPic;
+
+    String bdAccount;
+    String bdPassword;
+
+    public String getBdAccount() {
+        return bdAccount;
+    }
+
+    public void setBdAccount(String bdAccount) {
+        this.bdAccount = bdAccount;
+    }
+
+    public String getBdPassword() {
+        return bdPassword;
+    }
+
+    public void setBdPassword(String bdPassword) {
+        this.bdPassword = bdPassword;
+    }
 
     public boolean isBeida() {
         return isBeida;
@@ -51,5 +72,21 @@ public class User extends BmobObject {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getHeadPic() {
+        return headPic;
+    }
+
+    public void setHeadPic(String headPic) {
+        this.headPic = headPic;
     }
 }

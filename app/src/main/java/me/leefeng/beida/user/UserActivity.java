@@ -17,6 +17,8 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.R;
+import me.leefeng.beida.user_renzheng.User_renzhengActivity;
+import me.leefeng.library.utils.SharedPreferencesUtil;
 import me.leefeng.library.utils.ToastUtils;
 import me.leefeng.library.view.ItemView;
 import me.leefeng.promptlibrary.PromptButton;
@@ -65,7 +67,7 @@ public class UserActivity extends BaseActivity implements UserView {
         titleName.setVisibility(View.GONE);
         titleName.setText("个人信息");
         initUsername();
-        OverScrollDecoratorHelper.setUpStaticOverScroll(userOverscoll, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
+//        OverScrollDecoratorHelper.setUpStaticOverScroll(userOverscoll, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
     }
 
     @Override
@@ -75,7 +77,9 @@ public class UserActivity extends BaseActivity implements UserView {
 
     @Override
     protected void doReceive(Intent action) {
-
+        if (action.getAction().equals(INTENT_LOGIN_OUT)) {
+            initUsername();
+        }
     }
 
 
@@ -115,7 +119,8 @@ public class UserActivity extends BaseActivity implements UserView {
             case R.id.user_item_phone:
                 break;
             case R.id.user_item_isbeida:
-                ToastUtils.showShort(this, "认证");
+                Intent intent = new Intent(this, User_renzhengActivity.class);
+                startActivity(intent);
                 break;
             case R.id.user_logout:
                 showLogoutDialog();
@@ -123,22 +128,23 @@ public class UserActivity extends BaseActivity implements UserView {
         }
     }
 
+    /**
+     * 展示退出确认
+     */
     private void showLogoutDialog() {
         PromptButton confirm = new PromptButton("退出", new PromptButtonListener() {
             @Override
             public void onClick(PromptButton promptButton) {
                 ProjectApplication.user = null;
+                SharedPreferencesUtil.saveStringData(mContext, "phone", "");
                 Intent brodcast = new Intent(INTENT_LOGIN_OUT);
                 sendBroadcast(brodcast);
                 finish();
             }
         });
         confirm.setTextColor(getResources().getColor(R.color.colorAccent));
-        confirm.setFocusBacColor(Color.parseColor("#40961319"));
         confirm.setDelyClick(true);
         promptDialog.showWarnAlert("确定要退出吗？", new PromptButton("取消", null), confirm);
 
     }
-
-
 }

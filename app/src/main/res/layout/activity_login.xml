@@ -1,111 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/activity_title" />
 
-    <LinearLayout
 
-        android:id="@+id/linearLayout2"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true"
+        android:overScrollMode="never">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/home_logo"
-            android:visibility="gone" />
-
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:fitsSystemWindows="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textColor="#90000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/login_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/login_phone"
                 android:hint="手机号"
                 android:inputType="number"
                 android:singleLine="true"
+                android:textSize="14sp"
+                app:met_clearButton="true"
                 app:met_floatingLabel="normal"
-                app:met_maxCharacters="11"
+
                 app:met_primaryColor="@color/bac" />
 
-            <Button
-                android:id="@+id/login_phone"
-                android:layout_width="90dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-
-                android:background="@drawable/login_button"
-                android:gravity="center"
-                android:onClick="getPhoneConfirmNum"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="获取验证码"
-                android:textColor="#fff" />
-        </RelativeLayout>
-
-        <com.rengwuxian.materialedittext.MaterialEditText
-            android:id="@+id/login_pw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="验证码"
-            android:inputType="number"
-            android:singleLine="true"
-            app:met_floatingLabel="normal"
-            app:met_primaryColor="@color/bac" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/login_button"
-            android:onClick="login"
-            android:text="登录"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
             <RelativeLayout
-                android:id="@+id/welcome_adbanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/login_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/login_phone"
+                    android:hint="验证码"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    app:met_floatingLabel="normal"
+                    app:met_primaryColor="@color/bac" />
+
+                <TextView
+                    android:id="@+id/login_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignBottom="@+id/login_pw"
+                    android:layout_alignParentRight="true"
+
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/login_button"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="获取验证码"
+                    android:textColor="#fff" />
+            </RelativeLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"></RelativeLayout>
-        </RelativeLayout>
-    </LinearLayout>
+                android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我已阅读，并同意《用户注册协议》"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/login_button"
+                android:gravity="center"
+                android:onClick="login"
+                android:padding="10dp"
+                android:text="登录"
+                android:textColor="#fff"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+        <RelativeLayout
+            android:id="@+id/welcome_adbanner"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:onClick="phoneLogin"
-            android:padding="20dp"
-            android:text="手机号登录"
-            android:textColor="@color/bac"
-            android:textSize="16sp" />
-    </RelativeLayout>
-</LinearLayout>
+            android:layout_alignParentBottom="true"></RelativeLayout>
+
+    <include
+        android:id="@+id/login_title"
+        layout="@layout/activity_title"
+        android:visibility="invisible" />
+</RelativeLayout>

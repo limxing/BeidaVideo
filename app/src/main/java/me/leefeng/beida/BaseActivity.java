@@ -98,4 +98,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         registerReceiver(broadcastReceiver, intentFilter);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (promptDialog.onBackPressed())
+            super.onBackPressed();
+    }
 }

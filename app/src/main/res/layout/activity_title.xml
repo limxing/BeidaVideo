@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_bac"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/bac"
-    android:id="@+id/title_bac"
     android:orientation="vertical">
 
     <View
@@ -41,9 +41,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:paddingRight="20dp"
-            android:visibility="gone"
             android:src="@drawable/download"
-            />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/title_tv_right"
