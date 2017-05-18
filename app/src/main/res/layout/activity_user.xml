@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="#eee"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#eee">
 
 
     <LinearLayout
@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -18,9 +19,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_head"
-                android:layout_width="64dp"
-
-                android:layout_height="64dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_user"
                 app:civ_border_color="@color/colorAccent"
@@ -43,11 +43,14 @@
             android:id="@+id/user_item_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/textview_bac"
             app:bottomLineBrim="false"
             app:hintText="phone_0000"
             app:showRightPic="true"
             app:titleStyle="2"
-            app:titleText="姓名"></me.leefeng.library.view.ItemView>
+            app:titleText="姓名"
+            app:titleTextSize="16sp"
+            app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
 
         <me.leefeng.library.view.ItemView
             android:id="@+id/user_item_phone"
@@ -57,7 +60,9 @@
             app:hintText="18514528236"
             app:showRightPic="true"
             app:titleStyle="2"
-            app:titleText="手机号"></me.leefeng.library.view.ItemView>
+            app:titleText="手机号"
+            app:titleTextSize="16sp"
+            app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
 
         <me.leefeng.library.view.ItemView
             android:id="@+id/user_item_isbeida"
@@ -66,7 +71,25 @@
             app:hintText="未认证"
             app:showRightPic="true"
             app:titleStyle="2"
-            app:titleText="学员认证"></me.leefeng.library.view.ItemView>
+            app:titleText="学员认证"
+            app:titleTextSize="16sp"
+            app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
+
     <include layout="@layout/activity_title" />
+
+    <Button
+        android:id="@+id/user_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/login_button"
+        android:text="退出登录"
+        android:textColor="#fff"
+        android:textSize="17sp" />
 </RelativeLayout>

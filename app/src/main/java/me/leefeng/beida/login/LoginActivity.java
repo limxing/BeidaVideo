@@ -225,6 +225,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
             public void run() {
                 SharedPreferencesUtil.saveStringData(mContext, "phone", num);
                 SharedPreferencesUtil.saveStringData(mContext, "username", ProjectApplication.user.getUsername());
+                Intent loginSuccess = new Intent(INTENT_LOGIN_OUT);
+                sendBroadcast(loginSuccess);
                 if (isBack) {
                     setResult(RESULT_OK);
                 } else {

@@ -64,15 +64,13 @@ public class DownloadingActivity extends BaseActivity implements DownLoadListene
             public void run() {
                 failView();
             }
-        },300);
+        }, 300);
     }
 
     @Override
     protected int getContentView() {
         return R.layout.activity_downloading;
     }
-
-
 
 
     @Override
@@ -117,7 +115,7 @@ public class DownloadingActivity extends BaseActivity implements DownLoadListene
             if (sqlDownLoadInfo.getTaskID().equals(taskList.get(i).getTaskID())) {
                 taskList.get(i).setOnDownloading(false);
 //                adapter.notifyItemChanged(i);
-                ToastUtils.showShort(mContext,"文件不存在");
+                ToastUtils.showShort(mContext, "文件不存在");
                 adapter.notifyDataSetChanged();
                 return;
             }
@@ -125,20 +123,17 @@ public class DownloadingActivity extends BaseActivity implements DownLoadListene
         failView();
     }
 
-    public void failView(){
-        if (taskList.size()==0){
+    public void failView() {
+        if (taskList.size() == 0) {
 //            failview.setMode(FailView.MODE_NONET);
-            promptDialog.showWarnAlert("没有下载任务",new PromptButton("确定", new PromptButtonListener() {
+            PromptButton confirm = new PromptButton("确定", new PromptButtonListener() {
                 @Override
                 public void onClick(PromptButton promptButton) {
-                    recycleView.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            finish();
-                        }
-                    },300);
+                    finish();
                 }
-            }));
+            });
+            confirm.setDelyClick(true);
+            promptDialog.showWarnAlert("没有下载任务", confirm);
         }
     }
 

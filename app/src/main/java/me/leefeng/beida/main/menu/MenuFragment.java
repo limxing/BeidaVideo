@@ -182,8 +182,12 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
                 menuCb.setText("认证学员");
             }
             menuCb.setChecked(isBeida);
+        } else {
+            menuCb.setText("未认证学员");
+            menuCb.setChecked(false);
         }
-        if (username != null)
-            menuUsername.setText(username);
+        if (username == null)
+            username = "未登录";
+        menuUsername.setText(username);
     }
 }

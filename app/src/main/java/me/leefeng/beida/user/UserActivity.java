@@ -17,7 +17,10 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.R;
+import me.leefeng.library.utils.ToastUtils;
 import me.leefeng.library.view.ItemView;
+import me.leefeng.promptlibrary.PromptButton;
+import me.leefeng.promptlibrary.PromptButtonListener;
 
 /**
  * @author FengTing
@@ -97,12 +100,12 @@ public class UserActivity extends BaseActivity implements UserView {
         }
         if (username != null) {
             userName.setText(username);
-            userItemPhone.getValueTextView().setText(username);
+            userItemName.getValueTextView().setText(username);
         }
     }
 
 
-    @OnClick({R.id.user_head, R.id.user_item_name, R.id.user_item_phone, R.id.user_item_isbeida})
+    @OnClick({R.id.user_head, R.id.user_item_name, R.id.user_item_phone, R.id.user_item_isbeida, R.id.user_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.user_head:
@@ -112,10 +115,30 @@ public class UserActivity extends BaseActivity implements UserView {
             case R.id.user_item_phone:
                 break;
             case R.id.user_item_isbeida:
+                ToastUtils.showShort(this, "认证");
+                break;
+            case R.id.user_logout:
+                showLogoutDialog();
                 break;
         }
     }
 
+    private void showLogoutDialog() {
+        PromptButton confirm = new PromptButton("退出", new PromptButtonListener() {
+            @Override
+            public void onClick(PromptButton promptButton) {
+                ProjectApplication.user = null;
+                Intent brodcast = new Intent(INTENT_LOGIN_OUT);
+                sendBroadcast(brodcast);
+                finish();
+            }
+        });
+        confirm.setTextColor(getResources().getColor(R.color.colorAccent));
+        confirm.setFocusBacColor(Color.parseColor("#40961319"));
+        confirm.setDelyClick(true);
+        promptDialog.showWarnAlert("确定要退出吗？", new PromptButton("取消", null), confirm);
+
+    }
 
 
 }

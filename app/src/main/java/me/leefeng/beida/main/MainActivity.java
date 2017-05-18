@@ -124,13 +124,8 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
 
     @Override
     protected void doReceive(Intent action) {
-        if (action.getAction().equals("com.yuyou.account")) {
-            Long account = ProjectApplication.user.getAccount();
-//            if (account == null) {
-//                titleTvRight.setText(0 + "");
-//            } else {
-//                titleTvRight.setText(account.intValue() + "");
-//            }
+        if (action.getAction().equals(INTENT_LOGIN_OUT)) {
+            menuFragment.loginSuccess();
         }
     }
 
@@ -305,7 +300,8 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
         if (resultCode == RESULT_OK)
             switch (requestCode) {
                 case LOGIN_REQUEST_CODE:
-                    initUser();
+//                    initUser();
+//                    loginSuccess();
                     break;
             }
         super.onActivityResult(requestCode, resultCode, data);

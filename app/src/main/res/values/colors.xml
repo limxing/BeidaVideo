@@ -7,6 +7,6 @@
     <color name="colorAccent">#961319</color>
 
     <color name="bac">#961319</color>
-    <color name="bac_pressed">#963355</color>
+    <color name="bac_pressed">#7a090e</color>
     <color name="list_select">#f5f5f5</color>
 </resources>

@@ -23,6 +23,8 @@ import me.leefeng.promptlibrary.PromptDialog;
  * @date 2017/04/24 16:00:40
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    protected static final String INTENT_FINISH = "me.leefeng.finish";
+    protected static final String INTENT_LOGIN_OUT = "me.leefeng.account";
     protected Context mContext;
     protected PromptDialog promptDialog;
     private Unbinder butterKnife;
@@ -79,7 +81,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals("com.siweidg.finish")) {
+            if (intent.getAction().equals(INTENT_FINISH)) {
                 finish();
                 return;
             }
@@ -91,7 +93,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void registBrodcast() {
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.yuyou.account");
+        intentFilter.addAction(INTENT_LOGIN_OUT);
+        intentFilter.addAction(INTENT_FINISH);
         registerReceiver(broadcastReceiver, intentFilter);
     }
 
