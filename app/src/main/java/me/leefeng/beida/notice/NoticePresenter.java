@@ -7,6 +7,7 @@ import java.util.List;
 
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.dbmodel.NoticeMessage;
+import me.leefeng.library.utils.LogUtils;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -18,14 +19,14 @@ import rx.schedulers.Schedulers;
  * @date 2017/05/17 16:39:04
  */
 public class NoticePresenter implements NoticePreInterface {
-    private  NoticeAdapter adapter;
+    private NoticeAdapter adapter;
     private NoticeView noticeView;
     private List<NoticeMessage> list;
 
     public NoticePresenter(NoticeView noticeView) {
         this.noticeView = noticeView;
-        list=new ArrayList<>();
-        adapter=new NoticeAdapter(list);
+        list = new ArrayList<>();
+        adapter = new NoticeAdapter(list);
         noticeView.setAdapter(adapter);
 
     }
@@ -40,12 +41,12 @@ public class NoticePresenter implements NoticePreInterface {
         Observable.create(new Observable.OnSubscribe<Boolean>() {
             @Override
             public void call(Subscriber<? super Boolean> subscriber) {
-                QueryBuilder builder= new QueryBuilder<>(NoticeMessage.class);
+                QueryBuilder builder = new QueryBuilder<>(NoticeMessage.class);
                 builder.appendOrderDescBy("time");
-                list= ProjectApplication.liteOrm.query(builder);
+                list = ProjectApplication.liteOrm.query(builder);
                 subscriber.onNext(true);
             }
-        }).observeOn(Schedulers.io()).subscribeOn(AndroidSchedulers.mainThread())
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Boolean>() {
                     @Override
                     public void onCompleted() {
@@ -59,9 +60,10 @@ public class NoticePresenter implements NoticePreInterface {
 
                     @Override
                     public void onNext(Boolean aBoolean) {
-                        if (list.size()==0){
+                        LogUtils.i("list:" + list.size());
+                        if (list.size() == 0) {
                             noticeView.initSuccessNone();
-                        }else {
+                        } else {
                             noticeView.initSuccess();
                             adapter.notifyDataSetChanged();
                         }
