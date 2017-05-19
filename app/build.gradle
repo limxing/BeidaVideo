@@ -59,7 +59,7 @@ dependencies {
     //    testCompile 'junit:junit:4.12'
     //MYLibrary
     compile 'com.github.limxing:Android-PromptDialog:1.0.6'
-    compile 'com.github.limxing:LeefengLibrary:1.0.9'
+    compile 'com.github.limxing:LeefengLibrary:1.1.0'
     //    compile 'me.leefeng:library:3.0.1'
     compile 'me.leefeng:lfrecyclerview:1.0.4'
     compile 'me.leefeng:player:1.6.1'

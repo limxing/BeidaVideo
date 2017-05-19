@@ -5,59 +5,65 @@
     android:layout_height="match_parent"
     android:background="@color/activity_baccolor">
 
-    <LinearLayout
+
+    <ScrollView
+        android:id="@+id/set_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_below="@+id/set_title">
 
-        <include layout="@layout/activity_title" />
-
-        <ScrollView
-            android:id="@+id/set_scrollview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="消息推送"
+                android:textSize="10sp"
+                android:visibility="invisible" />
+
+
+            <me.leefeng.library.view.ItemView
+                android:id="@+id/set_item_tuisong"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                app:clickAble="false"
+                app:titleStyle="3"
+                app:titleText="接收推送"
+                app:titleTextSize="16sp"
+                app:topLine="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:text="消息推送"
-                    android:textSize="10sp"
-                    android:visibility="invisible" />
+            </me.leefeng.library.view.ItemView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:text="开启后可接收“今日答疑”等重要通知推送"
+                android:textSize="10sp" />
 
-                <me.leefeng.library.view.ItemView
-                    android:id="@+id/set_item_tuisong"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:clickAble="false"
-                    app:titleStyle="3"
-                    app:titleText="接收推送"
-                    app:titleTextSize="16sp"
-                    app:topLine="true">
+            <me.leefeng.library.view.ItemView
+                android:id="@+id/set_item_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintText=""
+                app:padingRight="10dp"
+                app:rightDrawable="@drawable/ic_item_right_48dp"
+                app:showRightPic="true"
+                app:titleStyle="2"
+                app:titleText="关于"
+                app:titleTextSize="16sp"
+                app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
+        </LinearLayout>
 
-                </me.leefeng.library.view.ItemView>
+    </ScrollView>
 
-                <me.leefeng.library.view.ItemView
-                    android:id="@+id/set_item_about"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:hintText=""
-                    app:rightDrawable="@drawable/ic_item_right_48dp"
-                    app:showRightPic="true"
-                    app:titleStyle="2"
-                    app:titleText="关于"
-                    app:titleTextSize="16sp"
-                    app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
-            </LinearLayout>
-
-        </ScrollView>
-    </LinearLayout>
-
+    <include
+        android:id="@+id/set_title"
+        layout="@layout/activity_title" />
 </RelativeLayout>

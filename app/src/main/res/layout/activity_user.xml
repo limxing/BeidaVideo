@@ -46,9 +46,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/textview_bac"
             app:bottomLineBrim="false"
-            app:rightDrawable="@drawable/ic_item_right_64dp"
+            app:drawablePad="8dp"
             app:hintText="phone_0000"
+            app:rightDrawable="@drawable/ic_item_right_64dp"
             app:showRightPic="true"
+            app:padingRight="10dp"
             app:titleStyle="2"
             app:titleText="姓名"
             app:titleTextSize="16sp"
@@ -60,6 +62,7 @@
             android:layout_height="wrap_content"
             app:bottomLineBrim="false"
             app:hintText="18514528236"
+            app:padingRight="10dp"
             app:rightDrawable="@drawable/ic_item_right_48dp"
             app:showRightPic="true"
             app:titleStyle="2"
@@ -72,11 +75,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:hintText="未认证"
+            app:rightDrawable="@drawable/ic_item_right_48dp"
             app:showRightPic="true"
             app:titleStyle="2"
             app:titleText="学员认证"
+            app:padingRight="10dp"
             app:titleTextSize="16sp"
-            app:rightDrawable="@drawable/ic_item_right_48dp"
             app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
 
         <View
@@ -85,23 +89,25 @@
     </LinearLayout>
 
     <include layout="@layout/activity_title" />
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_alignParentBottom="true"
-    android:background="#fff"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/user_logout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff">
 
-        android:layout_margin="10dp"
-        android:background="@drawable/login_button"
-        android:text="退出登录"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="#fff"
-        android:textSize="16sp" />
+        <TextView
+            android:id="@+id/user_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
+            android:background="@drawable/login_button"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="退出登录"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </RelativeLayout>

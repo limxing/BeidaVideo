@@ -51,6 +51,7 @@ public class User_renzhengPresenter extends BasePresenter implements User_renzhe
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                if (user_renzhengView == null) return;
                 if (isRenzheng) {
                     user_renzhengView.showFail("认证失败，请重试");
                 } else {
@@ -60,6 +61,7 @@ public class User_renzhengPresenter extends BasePresenter implements User_renzhe
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                if (user_renzhengView == null) return;
                 accountStr = response.body().string();
                 LogUtils.i(accountStr);
                 if (isRenzheng) {//认证
@@ -73,9 +75,9 @@ public class User_renzhengPresenter extends BasePresenter implements User_renzhe
                         i = accountStr.indexOf("http://202.152.177.118/zsphoto");
                         String headPic = accountStr.substring(i, i + 67);
                         i = accountStr.indexOf("专&nbsp;&nbsp;&nbsp;业</strong>：");
-                        String ss = accountStr.substring( i);
+                        String ss = accountStr.substring(i);
                         int last = ss.indexOf("</td>");
-                        String subject = ss.substring("专&nbsp;&nbsp;&nbsp;业</strong>：".length() , last).trim();
+                        String subject = ss.substring("专&nbsp;&nbsp;&nbsp;业</strong>：".length(), last).trim();
 
                         final User user = new User(ProjectApplication.user);
                         user.setRealName(realName);

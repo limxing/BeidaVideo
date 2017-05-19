@@ -3,11 +3,13 @@ package me.leefeng.beida.set;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.R;
 import me.leefeng.library.view.ItemView;
@@ -21,6 +23,8 @@ public class SetActivity extends BaseActivity implements SetView {
     TextView titleName;
     @BindView(R.id.set_item_tuisong)
     ItemView setItemTuisong;
+    @BindView(R.id.set_scrollview)
+    ScrollView setScrollview;
     private SetPresenter presenter;
 
     @Override
@@ -38,6 +42,7 @@ public class SetActivity extends BaseActivity implements SetView {
     @Override
     protected void initView() {
         titleName.setText("设置");
+        OverScrollDecoratorHelper.setUpOverScroll(setScrollview);
     }
 
     @Override
@@ -59,6 +64,11 @@ public class SetActivity extends BaseActivity implements SetView {
                 break;
             case R.id.set_item_about:
                 break;
+
         }
     }
+
+
+
+
 }
