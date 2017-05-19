@@ -22,7 +22,7 @@ import me.leefeng.beida.download.DownLoadService;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Process;
-import android.support.multidex.MultiDex;
+//import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -32,6 +32,7 @@ import java.util.List;
 import cn.bmob.v3.Bmob;
 import cn.smssdk.SMSSDK;
 import me.leefeng.library.utils.LogUtils;
+import me.leefeng.library.utils.SharedPreferencesUtil;
 
 /**
  * @author FengTing
@@ -107,20 +108,13 @@ public class ProjectApplication extends Application {
         Logger.setLogger(this, newLogger);
     }
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
-    //
+
+    //解决多包共存
 //    @Override
 //    protected void attachBaseContext(Context base) {
 //        super.attachBaseContext(base);
-//        LogUtils.i("Application===attachBaseContext");
-//        application = this;
-//        attachContext = base;
+//        MultiDex.install(this);
 //    }
-
     /**
      * 判断是否已经初始化
      *
@@ -165,7 +159,7 @@ public class ProjectApplication extends Application {
         @Override
         public void handleMessage(Message msg) {
             String s = (String) msg.obj;
-            LogUtils.i("收到推送相关："+s);
+            LogUtils.i("收到推送相关：" + s);
 //            if (sMainActivity != null) {
 //                sMainActivity.refreshLogInfo();
 //            }
@@ -173,5 +167,14 @@ public class ProjectApplication extends Application {
                 Toast.makeText(context, s, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public static void setMiPush() {
+        List<String> accounts = MiPushClient.getAllUserAccount(ProjectApplication.getContext());
+        LogUtils.i("Login_accounts:" + accounts.toString());
+        if (!accounts.contains(user.getObjectId()))
+            MiPushClient.setUserAccount(ProjectApplication.getContext(), user.getObjectId(), null);//登陆时设置就行
+
+
     }
 }

@@ -3,6 +3,7 @@ package me.leefeng.beida.main;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSON;
 import com.litesuits.orm.LiteOrm;
@@ -33,14 +34,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 import me.leefeng.library.utils.IOUtils;
 import me.leefeng.library.utils.LogUtils;
 import me.leefeng.library.utils.SharedPreferencesUtil;
@@ -48,7 +41,11 @@ import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * @author FengTing
@@ -92,13 +89,7 @@ public class MainPresenter implements MainPreInterface {
             public void done(List<User> list, BmobException e) {
                 if (e == null && list != null && list.size() > 0) {
                     ProjectApplication.user = list.get(0);
-                    List<String> alias = MiPushClient.getAllAlias(ProjectApplication.getContext());
-                    if (!alias.contains(list.get(0).getObjectId()))
-                        MiPushClient.setAlias(ProjectApplication.getContext(), list.get(0).getObjectId(), null);//登陆时设置就行
-
-                    if (SharedPreferencesUtil.getBooleanData(ProjectApplication.getContext(), "dayi", true) && !alias.contains(Constants.MiNoticeDayi))
-                        MiPushClient.setAlias(ProjectApplication.getContext(), Constants.MiNoticeDayi, null);
-
+               ProjectApplication.setMiPush();
                     mainView.loginSuccess();
                 } else {
                     e.printStackTrace();
@@ -235,28 +226,42 @@ public class MainPresenter implements MainPreInterface {
     }
 
     private void initPay(final Course course) {
-
-        Observable.create(new ObservableOnSubscribe<String>() {
+        Observable.create(new Observable.OnSubscribe<String>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
-                String ss = getCode();
-                if (ss != null) {
-                    JSONObject json = new JSONObject(ss);
-                    sOrderId = json.getString("orderid");
-                    sVacCode = json.getString("vacCode");
+            public void call(Subscriber<? super String> subscriber) {
+                String ss = null;
+                try {
+                    ss = getCode();
+                    if (ss != null) {
+                        JSONObject json = null;
+                        json = new JSONObject(ss);
+                        sOrderId = json.getString("orderid");
+                        sVacCode = json.getString("vacCode");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                e.onNext(ss);
+
+                subscriber.onNext(ss);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
+                .subscribe(new Subscriber<String>() {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        LogUtils.i("onSubscribe:" + d);
+                    public void onCompleted() {
+
                     }
 
                     @Override
-                    public void onNext(@NonNull String s) {
+                    public void onError(Throwable throwable) {
+                        LogUtils.i("onError");
+                        mainView.showErrorWithStatus("获取订单失败，请稍后再试");
+                    }
+
+                    @Override
+                    public void onNext(String s) {
                         LogUtils.i("onNext:" + s);
                         if (sOrderId == null || sVacCode == null) {
                             mainView.showErrorWithStatus("获取订单失败，请稍后再试");
@@ -264,19 +269,7 @@ public class MainPresenter implements MainPreInterface {
                             mainView.payView(sOrderId, sVacCode, course);
                         }
                     }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        LogUtils.i("onError");
-                        mainView.showErrorWithStatus("获取订单失败，请稍后再试");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        LogUtils.i("onComplete:");
-                    }
                 });
-
     }
 
 

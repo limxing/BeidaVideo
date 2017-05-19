@@ -22,12 +22,11 @@
 
             </me.leefeng.lfrecyclerview.LFRecyclerView>
 
-            <!--<me.leefeng.library.view.FailView-->
-                <!--android:id="@+id/notice_failview"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:visibility="gone"-->
-                <!--android:layout_height="match_parent"-->
-                <!--app:failCircleColor="@color/colorAccent" />-->
+            <me.leefeng.library.view.FailView
+                android:id="@+id/notice_failview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:failCircleColor="@color/colorAccent" />
         </RelativeLayout>
     </LinearLayout>
 

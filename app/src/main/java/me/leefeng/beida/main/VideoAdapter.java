@@ -52,14 +52,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ItemView> {
 //        holder.isBuy.setText("1 金币");
         holder.isBuy.setText("");
 //        isBuyView.setVisibility(View.INVISIBLE);
-        List<BuyData> buys = ProjectApplication.buyList;
-        if (buys != null)
-            for (BuyData buyData : buys) {
-                if (buyData.getCourseid().equals(list.get(i).getId())) {
-                    holder.isBuy.setText("已购买");
-                    break;
-                }
-            }
+//        List<BuyData> buys = ProjectApplication.buyList;
+//        if (buys != null)
+//            for (BuyData buyData : buys) {
+//                if (buyData.getCourseid().equals(list.get(i).getId())) {
+//                    holder.isBuy.setText("已购买");
+//                    break;
+//                }
+//            }
         Glide.with(holder.pic.getContext())
                 .load(list.get(i).getPic())
                 .placeholder(R.drawable.empty_photo)

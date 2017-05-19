@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_baccolor">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/activity_title" />
+
+        <ScrollView
+            android:id="@+id/set_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:text="消息推送"
+                    android:textSize="10sp"
+                    android:visibility="invisible" />
+
+
+                <me.leefeng.library.view.ItemView
+                    android:id="@+id/set_item_tuisong"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:clickAble="false"
+                    app:titleStyle="3"
+                    app:titleText="接收推送"
+                    app:titleTextSize="16sp"
+                    app:topLine="true">
+
+                </me.leefeng.library.view.ItemView>
+
+                <me.leefeng.library.view.ItemView
+                    android:id="@+id/set_item_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintText=""
+                    app:rightDrawable="@drawable/ic_item_right_48dp"
+                    app:showRightPic="true"
+                    app:titleStyle="2"
+                    app:titleText="关于"
+                    app:titleTextSize="16sp"
+                    app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+
 </RelativeLayout>

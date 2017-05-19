@@ -1,5 +1,7 @@
 package me.leefeng.beida.paymore;
 
+import android.support.annotation.NonNull;
+
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.bean.BuyData;
 import me.leefeng.beida.bean.PayType;
@@ -18,15 +20,13 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+
 import me.leefeng.library.utils.LogUtils;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * @author FengTing
@@ -116,27 +116,43 @@ public class PaymorePresenter implements PaymorePreInterface {
     private void initPay(final PayType payType) {
         sOrderId = null;
         sVacCode = null;
-        Observable.create(new ObservableOnSubscribe<String>() {
+
+        Observable.create(new Observable.OnSubscribe<String>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<String> e) throws Exception {
-                String ss = getCode(payType);
-                if (ss != null) {
-                    JSONObject json = new JSONObject(ss);
-                    sOrderId = json.getString("orderid");
-                    sVacCode = json.getString("vacCode");
+            public void call(Subscriber<? super String> subscriber) {
+                String ss = null;
+                try {
+                    ss = getCode(payType);
+                    if (ss != null) {
+                        JSONObject json = new JSONObject(ss);
+                        sOrderId = json.getString("orderid");
+                        sVacCode = json.getString("vacCode");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                e.onNext(ss);
+
+                subscriber.onNext(ss);
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        LogUtils.i("onSubscribe:" + d);
+                    public void onCompleted() {
+
                     }
 
                     @Override
-                    public void onNext(@NonNull String s) {
+                    public void onError(Throwable throwable) {
+                        LogUtils.i("onError");
+                        paymoreView.showToast("获取订单失败，请稍后再试");
+                        paymoreView.svpDismiss();
+                    }
+
+                    @Override
+                    public void onNext(String s) {
                         LogUtils.i("onNext:" + s);
                         if (sOrderId == null || sVacCode == null) {
                             paymoreView.showToast("获取订单失败，请稍后再试");
@@ -145,19 +161,8 @@ public class PaymorePresenter implements PaymorePreInterface {
                             paymoreView.payView(sOrderId, sVacCode, payType);
                         }
                     }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        LogUtils.i("onError");
-                        paymoreView.showToast("获取订单失败，请稍后再试");
-                        paymoreView.svpDismiss();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        LogUtils.i("onComplete:");
-                    }
                 });
+
 
     }
 

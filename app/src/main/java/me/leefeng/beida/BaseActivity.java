@@ -25,6 +25,7 @@ import me.leefeng.promptlibrary.PromptDialog;
 public abstract class BaseActivity extends AppCompatActivity {
     protected static final String INTENT_FINISH = "me.leefeng.finish";
     protected static final String INTENT_LOGIN_OUT = "me.leefeng.account";
+    protected static final String INTENT_NOTICE = "me.leefeng.notice";
     protected Context mContext;
     protected PromptDialog promptDialog;
     private Unbinder butterKnife;
@@ -95,6 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(INTENT_LOGIN_OUT);
         intentFilter.addAction(INTENT_FINISH);
+        intentFilter.addAction(INTENT_NOTICE);
         registerReceiver(broadcastReceiver, intentFilter);
     }
 

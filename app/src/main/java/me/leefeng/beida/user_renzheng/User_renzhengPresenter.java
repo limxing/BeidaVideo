@@ -65,31 +65,37 @@ public class User_renzhengPresenter extends BasePresenter implements User_renzhe
                 if (isRenzheng) {//认证
                     if (accountStr.contains("用户名错误")) {
                         user_renzhengView.showFail("登录失败，用户名错误");
+                    } else if (accountStr.contains("密码错误")) {
+                        user_renzhengView.showFail("登录失败，密码错误");
                     } else {
-                        if (accountStr.contains("密码错误")) {
-                            user_renzhengView.showFail("登录失败，密码错误");
-                        } else {
-                            int i = accountStr.indexOf("<div class=\"head_wid1\">");
-                            String realName = accountStr.substring(i + 23, i + 27).trim();
-                            i = accountStr.indexOf("http://202.152.177.118/zsphoto");
-                            String headPic = accountStr.substring(i, i + 67);
-                            final User user = ProjectApplication.user;
-                            user.setRealName(realName);
-                            user.setHeadPic(headPic);
-                            user.setBeida(true);
-                            user.setBdAccount(id);
-                            String passw = SecUtil.AESEncrypt(pass, SecUtil.getRawKey());
-                            LogUtils.i(passw + "");
-                            user.setBdPassword(passw);
-                            user.update(new UpdateListener() {
-                                @Override
-                                public void done(BmobException e) {
-                                    if (checkBmobException(e, user_renzhengView)) {
-                                        user_renzhengView.renzhengSuccess();
-                                    }
+                        int i = accountStr.indexOf("<div class=\"head_wid1\">");
+                        String realName = accountStr.substring(i + 23, i + 27).trim();
+                        i = accountStr.indexOf("http://202.152.177.118/zsphoto");
+                        String headPic = accountStr.substring(i, i + 67);
+                        i = accountStr.indexOf("专&nbsp;&nbsp;&nbsp;业</strong>：");
+                        String ss = accountStr.substring( i);
+                        int last = ss.indexOf("</td>");
+                        String subject = ss.substring("专&nbsp;&nbsp;&nbsp;业</strong>：".length() , last).trim();
+
+                        final User user = new User(ProjectApplication.user);
+                        user.setRealName(realName);
+                        user.setHeadPic(headPic);
+                        user.setBeida(true);
+                        user.setBdAccount(id);
+                        user.setSubject(subject);
+                        String passw = SecUtil.AESEncrypt(pass, SecUtil.getRawKey());
+
+                        user.setBdPassword(passw);
+                        user.update(new UpdateListener() {
+                            @Override
+                            public void done(BmobException e) {
+                                if (checkBmobException(e, user_renzhengView)) {
+                                    ProjectApplication.user = user;
+                                    user_renzhengView.renzhengSuccess();
                                 }
-                            });
-                        }
+                            }
+                        });
+
                     }
                 } else {
                     //登录

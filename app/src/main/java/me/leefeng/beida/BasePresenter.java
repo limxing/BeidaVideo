@@ -10,8 +10,8 @@ import me.leefeng.beida.user_renzheng.User_renzhengView;
 public class BasePresenter {
     protected boolean checkBmobException(BmobException e, User_renzhengView user_renzhengView) {
         if (e != null) {
-
-
+e.printStackTrace();
+            user_renzhengView.showFail("认证失败请重试");
             return false;
         }
         return true;

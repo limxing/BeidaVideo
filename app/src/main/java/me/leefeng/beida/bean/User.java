@@ -14,6 +14,7 @@ public class User extends BmobObject {
     boolean isBeida;
     String realName;
     String headPic;
+    String subject;
 
     String bdAccount;
     String bdPassword;
@@ -22,6 +23,7 @@ public class User extends BmobObject {
     }
 
     public User(User user) {
+        setObjectId(user.getObjectId());
         this.username=user.getUsername();
         this.password=user.getPassword();
         this.phone=user.getPhone();
@@ -30,6 +32,15 @@ public class User extends BmobObject {
         this.realName=user.getRealName();
         this.bdAccount=user.getBdAccount();
         this.bdPassword=user.getBdPassword();
+        this.subject=user.getSubject();
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public String getBdAccount() {

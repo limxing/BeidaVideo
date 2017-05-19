@@ -185,6 +185,8 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
             boolean isBeida = ProjectApplication.user.isBeida();
             if (isBeida) {
                 menuCb.setText("认证学员");
+            }else{
+                menuCb.setText("未认证学员");
             }
             menuCb.setChecked(isBeida);
         } else {

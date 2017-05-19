@@ -45,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/select_pic" />
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_item_right" />
 
         <TextView
             android:id="@+id/video_item_isbuy"

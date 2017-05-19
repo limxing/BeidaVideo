@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/textview_bac"
             app:bottomLineBrim="false"
+            app:rightDrawable="@drawable/ic_item_right_64dp"
             app:hintText="phone_0000"
             app:showRightPic="true"
             app:titleStyle="2"
@@ -59,6 +60,7 @@
             android:layout_height="wrap_content"
             app:bottomLineBrim="false"
             app:hintText="18514528236"
+            app:rightDrawable="@drawable/ic_item_right_48dp"
             app:showRightPic="true"
             app:titleStyle="2"
             app:titleText="手机号"
@@ -74,6 +76,7 @@
             app:titleStyle="2"
             app:titleText="学员认证"
             app:titleTextSize="16sp"
+            app:rightDrawable="@drawable/ic_item_right_48dp"
             app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
 
         <View

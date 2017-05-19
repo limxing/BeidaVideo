@@ -20,6 +20,7 @@ public class NoticeMessage {
     private String title;
     private String type;
     private Long time;
+    private boolean isRead;
 
     public NoticeMessage(String messageId, String alias, String content, String description,
                          String title, String type) {
@@ -96,6 +97,14 @@ public class NoticeMessage {
 
     public void setTime(Long time) {
         this.time = time;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 
     @Override

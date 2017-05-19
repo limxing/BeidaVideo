@@ -94,13 +94,8 @@ public class LoginPresenter implements LoginPreInterface {
                             public void done(String s, BmobException e) {
                                 if (e == null) {
                                     ProjectApplication.user = user;
-                                    List<String> alias = MiPushClient.getAllAlias(ProjectApplication.getContext());
-                                    if (!alias.contains(list.get(0).getObjectId()))
-                                        MiPushClient.setAlias(ProjectApplication.getContext(), list.get(0).getObjectId(), null);//登陆时设置就行
 
-                                    if (SharedPreferencesUtil.getBooleanData(ProjectApplication.getContext(), "dayi", true) && !alias.contains(Constants.MiNoticeDayi))
-                                        MiPushClient.setAlias(ProjectApplication.getContext(), Constants.MiNoticeDayi, null);
-
+                                   ProjectApplication.setMiPush();
                                     loginView.loginSuccess();
                                 } else {
                                     e.printStackTrace();

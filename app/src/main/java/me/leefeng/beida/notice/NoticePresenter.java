@@ -38,16 +38,16 @@ public class NoticePresenter implements NoticePreInterface {
 
     @Override
     public void initData() {
-        Observable.create(new Observable.OnSubscribe<Boolean>() {
+        Observable.create(new Observable.OnSubscribe<List<NoticeMessage>>() {
             @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
+            public void call(Subscriber<? super List<NoticeMessage>> subscriber) {
                 QueryBuilder builder = new QueryBuilder<>(NoticeMessage.class);
                 builder.appendOrderDescBy("time");
-                list = ProjectApplication.liteOrm.query(builder);
-                subscriber.onNext(true);
+               List<NoticeMessage> list = ProjectApplication.liteOrm.query(builder);
+                subscriber.onNext(list);
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Boolean>() {
+                .subscribe(new Observer<List<NoticeMessage>>() {
                     @Override
                     public void onCompleted() {
 
@@ -59,8 +59,10 @@ public class NoticePresenter implements NoticePreInterface {
                     }
 
                     @Override
-                    public void onNext(Boolean aBoolean) {
-                        LogUtils.i("list:" + list.size());
+                    public void onNext(List<NoticeMessage> l) {
+                        LogUtils.i("list:" + l.size());
+                        list.clear();
+                        list.addAll(l);
                         if (list.size() == 0) {
                             noticeView.initSuccessNone();
                         } else {
@@ -72,4 +74,18 @@ public class NoticePresenter implements NoticePreInterface {
                 });
 
     }
+
+    @Override
+    public List<NoticeMessage> getList() {
+        return list;
+    }
+
+    @Override
+    public void setPositionRead(int position) {
+        list.get(position).setRead(true);
+        ProjectApplication.liteOrm.update(list.get(position));
+        adapter.notifyItemChanged(position);
+    }
+
+
 }

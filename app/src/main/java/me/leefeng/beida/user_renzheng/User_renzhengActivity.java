@@ -48,6 +48,8 @@ public class User_renzhengActivity extends BaseActivity implements User_renzheng
     TextView renzhengXh;
     @BindView(R.id.renzheng_score)
     TextView renzhengScore;
+    @BindView(R.id.renzheng_subject)
+    TextView renzhengSubject;
     @BindView(R.id.renzheng_true)
     LinearLayout renzhengTrue;
     private User_renzhengPresenter presenter;
@@ -130,7 +132,7 @@ public class User_renzhengActivity extends BaseActivity implements User_renzheng
             public void run() {
                 promptDialog.showSuccess("认证成功");
                 initBeidaAccount();
-                Intent intent=new Intent(INTENT_LOGIN_OUT);
+                Intent intent = new Intent(INTENT_LOGIN_OUT);
                 sendBroadcast(intent);
             }
         });
@@ -156,6 +158,7 @@ public class User_renzhengActivity extends BaseActivity implements User_renzheng
                 renzhengName.setText("姓名：" + ProjectApplication.user.getRealName());
                 renzhengXh.setText("学号：" + xh);
                 renzhengBmh.setText("报名号：" + bmh);
+                renzhengSubject.setText("专业：" + ProjectApplication.user.getSubject());
                 renzhengScore.setText(xf);
                 renzhengFailview.setMode(FailView.Style.MODE_SUCCESS);
                 Glide.with(mContext).load(ProjectApplication.user.getHeadPic())

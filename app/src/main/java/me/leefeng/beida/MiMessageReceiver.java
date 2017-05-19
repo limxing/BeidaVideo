@@ -2,6 +2,7 @@ package me.leefeng.beida;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
@@ -107,7 +108,8 @@ public class MiMessageReceiver extends PushMessageReceiver {
         noticeMessage.setType(message.getExtra().get("type"));
         noticeMessage.setTime(System.currentTimeMillis());
         ProjectApplication.liteOrm.save(noticeMessage);
-
+        Intent intent=new Intent(BaseActivity.INTENT_NOTICE);
+        context.sendBroadcast(intent);
         Log.v(ProjectApplication.TAG,
                 "onNotificationMessageArrived is called. " + noticeMessage.toString());
         String log = context.getString(R.string.arrive_notification_message, message.getContent());

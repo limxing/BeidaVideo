@@ -15,6 +15,8 @@ import me.leefeng.beida.R;
 import me.leefeng.beida.dbmodel.NoticeMessage;
 import me.leefeng.lfrecyclerview.LFRecyclerView;
 import me.leefeng.lfrecyclerview.OnItemClickListener;
+import me.leefeng.library.utils.LogUtils;
+import me.leefeng.library.utils.ToastUtils;
 import me.leefeng.library.view.FailView;
 import me.leefeng.promptlibrary.PromptButton;
 import me.leefeng.promptlibrary.PromptButtonListener;
@@ -30,14 +32,15 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
     TextView titleTvRight;
     @BindView(R.id.notice_list)
     LFRecyclerView noticeList;
-//    @BindView(R.id.notice_failview)
-//    FailView noticeFailview;
+    @BindView(R.id.notice_failview)
+    FailView noticeFailview;
     private NoticePresenter presenter;
 
     @Override
     protected void initData() {
 //        noticeFailview.setMode(FailView.Style.MODE_REFRESH);
 //        noticeFailview.setText("正在加载...");
+
         presenter.initData();
     }
 
@@ -75,7 +78,9 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
 
     @Override
     protected void doReceive(Intent action) {
-
+        if (action.getAction().equals(INTENT_NOTICE)) {
+            initData();
+        }
     }
 
 
@@ -86,7 +91,7 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
                 finish();
                 break;
             case R.id.title_tv_right:
-                PromptButton  confirm=  new PromptButton("确定", new PromptButtonListener() {
+                PromptButton confirm = new PromptButton("确定", new PromptButtonListener() {
                     @Override
                     public void onClick(PromptButton promptButton) {
                         ProjectApplication.liteOrm.delete(NoticeMessage.class);
@@ -96,7 +101,7 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
                     }
                 });
                 confirm.setDelyClick(true);
-                promptDialog.showWarnAlert("确定要清空消息吗?",new PromptButton("取消",null),confirm);
+                promptDialog.showWarnAlert("确定要清空消息吗?", new PromptButton("取消", null), confirm);
 
                 break;
         }
@@ -109,15 +114,15 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
 
     @Override
     public void initSuccess() {
-//        noticeFailview.setMode(FailView.Style.MODE_SUCCESS);
+        noticeFailview.setMode(FailView.Style.MODE_SUCCESS);
         titleTvRight.setVisibility(View.VISIBLE);
         noticeList.stopRefresh(true);
     }
 
     @Override
     public void initSuccessNone() {
-//        noticeFailview.setMode(FailView.Style.MODE_EMPTY);
-//        noticeFailview.setText("暂时没有数据");
+        noticeFailview.setMode(FailView.Style.MODE_EMPTY);
+        noticeFailview.setText("暂时没有信息");
         titleTvRight.setVisibility(View.GONE);
         noticeList.stopRefresh(true);
     }
@@ -129,7 +134,7 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
             public void run() {
                 initData();
             }
-        },1000);
+        }, 1000);
     }
 
     @Override
@@ -139,7 +144,8 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
 
     @Override
     public void onClick(int position) {
-
+        presenter.setPositionRead(position);
+        LogUtils.i("" + position);
     }
 
     @Override

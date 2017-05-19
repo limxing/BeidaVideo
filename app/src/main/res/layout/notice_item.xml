@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:background="@drawable/edittext_bac"
-        android:padding="10dp"
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:background="@drawable/edittext_bac"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/notice_item_time"
@@ -24,6 +24,7 @@
             android:text="标题"
             android:textColor="#000"
             android:textSize="18sp" />
+
         <TextView
             android:id="@+id/notice_item_des"
             android:layout_width="wrap_content"
@@ -33,4 +34,12 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/notice_item_read"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="未读"
+        android:textColor="#f00" />
+</RelativeLayout>
