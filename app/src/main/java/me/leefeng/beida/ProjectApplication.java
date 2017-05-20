@@ -46,7 +46,7 @@ public class ProjectApplication extends Application {
 
 //    public static ProjectApplication application;
 
-    public static boolean isDebug = true;
+    public static boolean isDebug = false;
 //    public static Context attachContext;
 
     public static LiteOrm liteOrm;
@@ -164,7 +164,7 @@ public class ProjectApplication extends Application {
 //                sMainActivity.refreshLogInfo();
 //            }
             if (!TextUtils.isEmpty(s)) {
-                Toast.makeText(context, s, Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, s, Toast.LENGTH_LONG).show();
             }
         }
     }
