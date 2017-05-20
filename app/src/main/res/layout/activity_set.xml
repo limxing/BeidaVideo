@@ -27,17 +27,49 @@
                 android:visibility="invisible" />
 
 
-            <me.leefeng.library.view.ItemView
-                android:id="@+id/set_item_tuisong"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:clickAble="false"
-                app:titleStyle="3"
-                app:titleText="接收推送"
-                app:titleTextSize="16sp"
-                app:topLine="true">
+                android:layout_height="@dimen/set_item_height"
+                android:background="#fff">
 
-            </me.leefeng.library.view.ItemView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_divider"
+                    android:background="@color/set_divider" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="接收推送"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <com.kyleduo.switchbutton.SwitchButton
+                    android:id="@+id/set_push_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+
+                    android:layout_centerVertical="true"
+                    android:paddingRight="20dp"
+                    app:kswAnimationDuration="300"
+                    app:kswBackDrawable="@drawable/ios_back_drawable"
+                    app:kswBackMeasureRatio="1.4"
+                    app:kswThumbDrawable="@drawable/ios_thumb_selector"
+                    app:kswThumbMarginBottom="-8dp"
+                    app:kswThumbMarginLeft="-5dp"
+                    app:kswThumbMarginRight="-5dp"
+                    app:kswThumbMarginTop="-2.5dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_divider"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/set_divider" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,20 +77,24 @@
                 android:paddingBottom="20dp"
                 android:paddingLeft="20dp"
                 android:text="开启后可接收“今日答疑”等重要通知推送"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
-            <me.leefeng.library.view.ItemView
+
+
+            <me.leefeng.library.view.SetView
                 android:id="@+id/set_item_about"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintText=""
-                app:padingRight="10dp"
-                app:rightDrawable="@drawable/ic_item_right_48dp"
-                app:showRightPic="true"
-                app:titleStyle="2"
-                app:titleText="关于"
-                app:titleTextSize="16sp"
-                app:valueTextSize="14sp"></me.leefeng.library.view.ItemView>
+                android:background="@drawable/textview_bac"
+                android:paddingLeft="20dp"
+                app:setRightPic="@drawable/ic_item_right_48dp"
+                android:paddingRight="15dp"
+                app:setShowBottomLine="true"
+                android:clickable="true"
+                app:setDividerWidth="@dimen/item_divider"
+                app:setDividerColor="@color/set_divider"
+                app:setTitleText="关于"
+                android:layout_height="@dimen/set_item_height" />
+
         </LinearLayout>
 
     </ScrollView>

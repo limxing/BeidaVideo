@@ -103,7 +103,7 @@ public class MainActivity extends BaseActivity implements MainView, OnItemClickL
     @Override
     protected void initView() {
 //        titleBack.setVisibility(View.GONE);
-        mianList.addItemDecoration(new RecycleViewDivider(mContext, LinearLayoutManager.HORIZONTAL));
+//        mianList.addItemDecoration(new RecycleViewDivider(mContext, LinearLayoutManager.HORIZONTAL));
         mianList.setLoadMore(false);
         mianList.setLFRecyclerViewListener(this);
         mianList.setOnItemClickListener(this);

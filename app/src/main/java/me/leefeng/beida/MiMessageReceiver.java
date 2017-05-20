@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 
 import me.leefeng.beida.dbmodel.NoticeMessage;
+import me.leefeng.beida.webview.WebViewActivity;
+import me.leefeng.beida.welcome.WelcomeActivity;
 
 /**
  * 1、PushMessageReceiver 是个抽象类，该类继承了 BroadcastReceiver。<br/>
@@ -94,6 +96,16 @@ public class MiMessageReceiver extends PushMessageReceiver {
             msg.obj = log;
         }
         ProjectApplication.getHandler().sendMessage(msg);
+       if( message.getExtra().get("type").equals("url")){
+           Intent intent=new Intent(context, WebViewActivity.class);
+           intent.putExtra("url",message.getContent());
+           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           context.startActivity(intent);
+       }else{
+           Intent intent=new Intent(context, WelcomeActivity.class);
+           intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           context.startActivity(intent);
+       }
     }
 
     @Override

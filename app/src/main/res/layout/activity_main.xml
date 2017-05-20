@@ -2,6 +2,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 
     <android.support.v4.widget.DrawerLayout
@@ -12,6 +13,7 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/activity_baccolor"
             android:orientation="vertical">
 
             <include layout="@layout/activity_title" />
@@ -33,10 +35,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"></ListView>-->
             <me.leefeng.lfrecyclerview.LFRecyclerView
+
                 android:id="@+id/mian_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#fff"
+
                 android:overScrollMode="never"></me.leefeng.lfrecyclerview.LFRecyclerView>
         </LinearLayout>
 

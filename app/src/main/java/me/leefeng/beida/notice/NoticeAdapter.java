@@ -35,9 +35,9 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeIten
         holder.time.setText(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date(message.getTime())));
         holder.title.setText(message.getTitle());
         holder.des.setText(message.getDescription());
-        if (message.isRead()){
+        if (message.isRead()) {
             holder.read.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             holder.read.setVisibility(View.VISIBLE);
         }
 
@@ -53,14 +53,14 @@ public class NoticeAdapter extends RecyclerView.Adapter<NoticeAdapter.NoticeIten
         TextView time;
         TextView title;
         TextView des;
-        TextView read;
+        View read;
 
         public NoticeItenHolder(View itemView) {
             super(itemView);
             time = (TextView) itemView.findViewById(R.id.notice_item_time);
             title = (TextView) itemView.findViewById(R.id.notice_item_title);
             des = (TextView) itemView.findViewById(R.id.notice_item_des);
-            read = (TextView) itemView.findViewById(R.id.notice_item_read);
+            read = itemView.findViewById(R.id.notice_item_read);
         }
     }
 }

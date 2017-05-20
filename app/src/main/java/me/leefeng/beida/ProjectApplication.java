@@ -175,6 +175,13 @@ public class ProjectApplication extends Application {
         if (!accounts.contains(user.getObjectId()))
             MiPushClient.setUserAccount(ProjectApplication.getContext(), user.getObjectId(), null);//登陆时设置就行
 
-
+//        accounts= MiPushClient.getAllTopic(getContext());
+//        if (!accounts.contains("dayi"))
+//            MiPushClient.su(ProjectApplication.getContext(), user.getObjectId(), null);
+        accounts=MiPushClient.getAllAlias(getContext());
+        LogUtils.i("Login_alias:" + accounts.toString());
+        if (!accounts.contains(user.getObjectId())){
+            MiPushClient.setAlias(getContext(),user.getObjectId(),null);
+        }
     }
 }

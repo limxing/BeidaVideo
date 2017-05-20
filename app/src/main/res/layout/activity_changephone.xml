@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/changephone_phone_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="手机号"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textSize="14sp"
+            app:met_clearButton="true"
+            app:met_floatingLabel="normal"
+            app:met_primaryColor="@color/bac" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:id="@+id/changephone_yan_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/login_phone"
+                android:hint="验证码"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textSize="14sp"
+                app:met_floatingLabel="normal"
+                app:met_primaryColor="@color/bac" />
+
+            <TextView
+                android:id="@+id/changephone_yan"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignBottom="@+id/login_pw"
+                android:layout_alignParentRight="true"
+
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/login_button"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="获取验证码"
+                android:textColor="#fff" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/changephone_bt_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/login_button"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="验证"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

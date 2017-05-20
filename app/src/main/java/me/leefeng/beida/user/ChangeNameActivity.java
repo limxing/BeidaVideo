@@ -76,6 +76,7 @@ public class ChangeNameActivity extends BaseActivity {
                     return;
                 }
                 if (username.equals(changeName)) {
+                    closeInput();
                     finish();
                     return;
                 }

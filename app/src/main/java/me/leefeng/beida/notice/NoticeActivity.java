@@ -13,6 +13,7 @@ import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.R;
 import me.leefeng.beida.dbmodel.NoticeMessage;
+import me.leefeng.beida.webview.WebViewActivity;
 import me.leefeng.lfrecyclerview.LFRecyclerView;
 import me.leefeng.lfrecyclerview.OnItemClickListener;
 import me.leefeng.library.utils.LogUtils;
@@ -128,6 +129,13 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
     }
 
     @Override
+    public void openWebView(String content) {
+        Intent intent=new Intent(mContext,WebViewActivity.class);
+        intent.putExtra("url",content);
+        startActivity(intent);
+    }
+
+    @Override
     public void onRefresh() {
         titleName.postDelayed(new Runnable() {
             @Override
@@ -144,6 +152,7 @@ public class NoticeActivity extends BaseActivity implements NoticeView, LFRecycl
 
     @Override
     public void onClick(int position) {
+
         presenter.setPositionRead(position);
         LogUtils.i("" + position);
     }

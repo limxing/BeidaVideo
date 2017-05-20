@@ -18,6 +18,7 @@ public class User extends BmobObject {
 
     String bdAccount;
     String bdPassword;
+    String app="beida";
     public User(){
 
     }
@@ -113,5 +114,13 @@ public class User extends BmobObject {
 
     public void setHeadPic(String headPic) {
         this.headPic = headPic;
+    }
+
+    public String getApp() {
+        return app;
+    }
+
+    public void setApp(String app) {
+        this.app = app;
     }
 }

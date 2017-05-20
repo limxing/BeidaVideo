@@ -84,8 +84,13 @@ public class MenuFragment extends Fragment implements AdapterView.OnItemClickLis
             menuItem.setIcon(R.drawable.ic_menu_notice);
             list.add(menuItem);
             menuItem = new MenuItem();
+            menuItem.setName("今日答疑");
+            menuItem.setClick("me.leefeng.beida.today.ToadyActivity");
+            menuItem.setIcon(R.drawable.ic_menu_dayi);
+            list.add(menuItem);
+            menuItem = new MenuItem();
             menuItem.setName("建议反馈");
-            menuItem.setClick("me.leefeng.beida.notice.NoticeActivity");
+            menuItem.setClick("me.leefeng.beida.advice.AdviceActivity");
             menuItem.setIcon(R.drawable.ic_menu_advice);
             list.add(menuItem);
             menuItem = new MenuItem();

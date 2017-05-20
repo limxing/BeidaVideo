@@ -83,7 +83,7 @@ public class LoginPresenter implements LoginPreInterface {
                 if (e == null) {
                     if (list != null && list.size() > 0) {
                         ProjectApplication.user = list.get(0);
-                        MiPushClient.setAlias(ProjectApplication.getContext(), list.get(0).getObjectId(), null);
+                        ProjectApplication.setMiPush();
                         loginView.loginSuccess();
                     } else {
                         final User user = new User();

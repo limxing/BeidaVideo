@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_baccolor"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+
+    <EditText
+        android:id="@+id/advice_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edittext_bac"
+        android:gravity="start"
+        android:textSize="16sp"
+        android:hint="请输入内容"
+        android:minLines="4"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/advice_length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="end"
+        android:text="0/200" />
+</LinearLayout>

@@ -9,8 +9,8 @@ android {
         applicationId "me.leefeng.beida"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.2.2"
+        versionCode 2
+        versionName "2.0.1"
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         //分开打包
@@ -58,8 +58,8 @@ dependencies {
     //    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     //    testCompile 'junit:junit:4.12'
     //MYLibrary
-    compile 'com.github.limxing:Android-PromptDialog:1.0.6'
-    compile 'com.github.limxing:LeefengLibrary:1.1.0'
+    compile 'com.github.limxing:Android-PromptDialog:1.0.7'
+    compile 'com.github.limxing:LeefengLibrary:1.1.1'
     //    compile 'me.leefeng:library:3.0.1'
     compile 'me.leefeng:lfrecyclerview:1.0.4'
     compile 'me.leefeng:player:1.6.1'
@@ -117,4 +117,6 @@ dependencies {
 //    compile 'com.android.support:support-v4:25.3.1'
 
 //    compile 'com.android.support:multidex:1.0.1'//解决多个包引入
+
+    compile 'com.kyleduo.switchbutton:library:1.4.6'//开关
 }

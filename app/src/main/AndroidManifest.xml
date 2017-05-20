@@ -38,7 +38,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".main.MainActivity" android:launchMode="singleTop">
 
         </activity>
 
@@ -171,6 +171,26 @@
             android:name=".user.ChangeNameActivity"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
+        <activity
+            android:name=".today.ToadyActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".user.ChangePhoneActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".advice.AdviceActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
+        <activity
+            android:name=".set.AboutActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".webview.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

@@ -121,6 +121,8 @@ public class UserActivity extends BaseActivity implements UserView {
                 startActivityForResult(intent, REQUEST_CHANGENAME);
                 break;
             case R.id.user_item_phone:
+                intent = new Intent(mContext, ChangePhoneActivity.class);
+                startActivityForResult(intent, REQUEST_CHANGENAME);
                 break;
             case R.id.user_item_isbeida:
                 intent = new Intent(this, User_renzhengActivity.class);
@@ -157,7 +159,7 @@ public class UserActivity extends BaseActivity implements UserView {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CHANGENAME:
-                    promptDialog.showSuccess("修改成功");
+                    promptDialog.showSuccessDelay("修改成功",300);
                     break;
             }
         }

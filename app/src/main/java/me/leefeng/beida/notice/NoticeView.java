@@ -12,4 +12,5 @@ public interface NoticeView {
 
     void initSuccessNone();
 
+    void openWebView(String content);
 }

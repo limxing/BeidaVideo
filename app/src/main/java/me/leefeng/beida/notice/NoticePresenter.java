@@ -43,7 +43,7 @@ public class NoticePresenter implements NoticePreInterface {
             public void call(Subscriber<? super List<NoticeMessage>> subscriber) {
                 QueryBuilder builder = new QueryBuilder<>(NoticeMessage.class);
                 builder.appendOrderDescBy("time");
-               List<NoticeMessage> list = ProjectApplication.liteOrm.query(builder);
+                List<NoticeMessage> list = ProjectApplication.liteOrm.query(builder);
                 subscriber.onNext(list);
             }
         }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -82,9 +82,15 @@ public class NoticePresenter implements NoticePreInterface {
 
     @Override
     public void setPositionRead(int position) {
-        list.get(position).setRead(true);
-        ProjectApplication.liteOrm.update(list.get(position));
-        adapter.notifyItemChanged(position);
+       NoticeMessage message= list.get(position);
+        if (!message.isRead()) {
+            message.setRead(true);
+            ProjectApplication.liteOrm.update(message);
+            adapter.notifyItemChanged(position);
+        }
+        if (message.getType().equals("url")){
+            noticeView.openWebView(message.getContent());
+        }
     }
 
 
