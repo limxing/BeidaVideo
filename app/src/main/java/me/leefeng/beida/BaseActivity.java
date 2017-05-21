@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.leefeng.beida.utils.SoftHideKeyBoardUtil;
 import me.leefeng.library.NoTitleBar.StatusBarCompat;
 import me.leefeng.library.NoTitleBar.SystemBarTintManager;
 import me.leefeng.library.SVProgressHUD.SVProgressHUD;
@@ -36,12 +37,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         StatusBarCompat.translucentStatusBar(this);
         setContentView(getContentView());
+
         View topView = findViewById(R.id.title_topview);
         if (topView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             int height = StatusBarCompat.getStatusBarHeight(this);
             topView.getLayoutParams().height = height;
         }
         butterKnife = ButterKnife.bind(this);
+//        SoftHideKeyBoardUtil.assistActivity(this);
         mContext = this;
         initView();
 //        svp = new SVProgressHUD(mContext);

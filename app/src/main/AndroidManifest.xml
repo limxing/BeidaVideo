@@ -60,7 +60,7 @@
         <activity
             android:name=".login.LoginActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".newplay.NewPlayerActivity"
             android:configChanges="orientation|screenSize"
@@ -182,15 +182,16 @@
         <activity
             android:name=".advice.AdviceActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateAlwaysVisible" />
+           />
         <activity
             android:name=".set.AboutActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".webview.WebViewActivity"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+
     </application>
 
 </manifest>

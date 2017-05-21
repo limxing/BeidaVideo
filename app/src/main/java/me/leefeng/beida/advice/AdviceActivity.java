@@ -6,16 +6,19 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.everything.android.ui.overscroll.OverScrollDecoratorHelper;
 import me.leefeng.beida.BaseActivity;
 import me.leefeng.beida.ProjectApplication;
 import me.leefeng.beida.R;
 import me.leefeng.beida.bean.Advice;
 import me.leefeng.beida.login.LoginActivity;
+import me.leefeng.beida.utils.SoftHideKeyBoardUtil;
 import me.leefeng.library.utils.StringUtils;
 import me.leefeng.promptlibrary.PromptButton;
 import me.leefeng.promptlibrary.PromptButtonListener;
@@ -49,7 +52,9 @@ public class AdviceActivity extends BaseActivity implements TextWatcher {
         titleTvRight.setText("提交");
         titleTvRight.setVisibility(View.VISIBLE);
         adviceEt.addTextChangedListener(this);
-
+        ScrollView scrollView= (ScrollView) findViewById(R.id.advice_sc);
+        OverScrollDecoratorHelper.setUpOverScroll(scrollView);
+        SoftHideKeyBoardUtil.assistActivity(this);
     }
 
     @Override
