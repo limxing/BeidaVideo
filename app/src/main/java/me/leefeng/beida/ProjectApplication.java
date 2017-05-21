@@ -46,7 +46,7 @@ public class ProjectApplication extends Application {
 
 //    public static ProjectApplication application;
 
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
 //    public static Context attachContext;
 
     public static LiteOrm liteOrm;
