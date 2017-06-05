@@ -115,6 +115,23 @@ public class UserActivity extends BaseActivity implements UserView {
         Intent intent;
         switch (view.getId()) {
             case R.id.user_head:
+                PromptButton cancle=new PromptButton("取消",null);
+                cancle.setTextColor(getResources().getColor(R.color.color_sheet));
+                PromptButton selectPhone=new PromptButton("相册", new PromptButtonListener() {
+                    @Override
+                    public void onClick(PromptButton promptButton) {
+
+                    }
+                });
+                selectPhone.setTextColor(getResources().getColor(R.color.color_sheet));
+                PromptButton fromCamera=new PromptButton("拍照", new PromptButtonListener() {
+                    @Override
+                    public void onClick(PromptButton promptButton) {
+
+                    }
+                });
+                fromCamera.setTextColor(getResources().getColor(R.color.color_sheet));
+                promptDialog.showAlertSheet(null,true,cancle,selectPhone,fromCamera);
                 break;
             case R.id.user_item_name:
                 intent = new Intent(mContext, ChangeNameActivity.class);

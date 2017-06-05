@@ -12,4 +12,5 @@
 
     <color name="activity_baccolor">#e1e1e1</color>
     <color name="set_divider">#ddd</color>
+    <color name="color_sheet">#0076ff</color>
 </resources>

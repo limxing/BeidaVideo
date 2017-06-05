@@ -65,13 +65,14 @@ public class WebViewActivity extends BaseActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
 
-                if (view.canGoBack()) {
-                    LogUtils.i("能返回");
-                    titleClose.setVisibility(View.VISIBLE);
-                } else {
-                    titleClose.setVisibility(View.INVISIBLE);
-                }
                 super.onPageFinished(view, url);
+                if (titleClose != null)
+                    if (view.canGoBack()) {
+                        LogUtils.i("能返回");
+                        titleClose.setVisibility(View.VISIBLE);
+                    } else {
+                        titleClose.setVisibility(View.INVISIBLE);
+                    }
             }
 
             @Override
@@ -97,7 +98,8 @@ public class WebViewActivity extends BaseActivity {
 
             @Override
             public void onReceivedTitle(WebView view, String title) {
-                titleName.setText(title);
+                if (titleName != null)
+                    titleName.setText(title);
             }
         });
 
@@ -150,9 +152,7 @@ public class WebViewActivity extends BaseActivity {
     }
 
 
-
-
-    @OnClick({R.id.title_back, R.id.title_close,R.id.title_right_image})
+    @OnClick({R.id.title_back, R.id.title_close, R.id.title_right_image})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_back:
